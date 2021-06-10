@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2021.6.9)  10 JUN 2021 10:35
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2021.6.9)  10 JUN 2021 10:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -718,13 +718,13 @@ LaTeX Info: Redefining \nameref on input line 7.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-(./section/1-title.tex [0
+(./section/1-title.tex [1
 
-]) (./section/2-task.tex [1
-
-] [2
+]) (./section/2-task.tex [2
 
 ] [3
+
+] [4
 
 ]) (./section/3-content.tex (./main.toc
 LaTeX Font Info:    Trying to load font information for U+msa on input line 3.
@@ -738,20 +738,25 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
- [4
+ [5
 
 ]) (./section/4-intro.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\uppercase' on input line 1.
 
-[5
+[6
 
-]) (./section/5-main.tex [6
+]) (./section/5-main.tex [7
 
-]) (./section/6-conclusion.tex [7
+]) (./section/6-conclusion.tex [8
 
-]) (./section/7-sources.tex [8
+]) (./section/7-sources.tex
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\uppercase' on input line 3.
+
+[9
 
 ]) (./section/8-appendix.tex)
 The property list \polyglossia@langsetup contains the pairs (without outer
@@ -798,7 +803,7 @@ Package caption Warning: Unused \captionsetup[table] on input line 125.
 See the caption package documentation for explanation.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 18.
-[9
+[10
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 18.
@@ -806,15 +811,15 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 18.
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 18.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 18.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 78050EDF52C40914A3652824B2E1EB36;321.
+(rerunfilecheck)             Checksum: 85CD8A0C587C0D3C0C329B120561EE86;322.
  ) 
 Here is how much of TeX's memory you used:
- 20560 strings out of 481058
- 367888 string characters out of 5929148
+ 20562 strings out of 481058
+ 367905 string characters out of 5929148
  671202 words of memory out of 5000000
- 37240 multiletter control sequences out of 15000+600000
+ 37242 multiletter control sequences out of 15000+600000
  534541 words of font info for 51 fonts, out of 8000000 for 9000
  682 hyphenation exceptions out of 8191
- 60i,6n,98p,882b,329s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,6n,98p,882b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on main.pdf (10 pages).
