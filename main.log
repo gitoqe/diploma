@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2021.6.9)  10 JUN 2021 10:53
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2021.6.9)  10 JUN 2021 12:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -747,21 +747,21 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 [6
 
-]) (./section/5-main.tex [7
+] [7]) (./section/5-main.tex [8
 
 ]) (./section/6-conclusion.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\uppercase' on input line 1.
 
-[8
+[9
 
 ]) (./section/7-sources.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\uppercase' on input line 3.
 
-[9
+[10
 
 ]) (./section/8-appendix.tex
 
@@ -813,7 +813,7 @@ Package caption Warning: Unused \captionsetup[table] on input line 125.
 See the caption package documentation for explanation.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 18.
-[10
+[11
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 18.
@@ -824,12 +824,12 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: C99FAE76CA9778A39DDACD7EECC249B5;324.
  ) 
 Here is how much of TeX's memory you used:
- 20562 strings out of 481058
- 367905 string characters out of 5929148
- 671202 words of memory out of 5000000
- 37242 multiletter control sequences out of 15000+600000
+ 20565 strings out of 481058
+ 367949 string characters out of 5929148
+ 681202 words of memory out of 5000000
+ 37245 multiletter control sequences out of 15000+600000
  534541 words of font info for 51 fonts, out of 8000000 for 9000
  682 hyphenation exceptions out of 8191
- 60i,6n,98p,882b,346s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,7n,98p,882b,346s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (10 pages).
+Output written on main.pdf (11 pages).
