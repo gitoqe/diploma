@@ -1,3 +1,8 @@
+main.aux
 *.log
 *.out
 *.toc
+*.gz
+*.png
+*.jpg
+*.jpeg
