@@ -4,6 +4,7 @@
 \usepackage{pdfpages}       % Вставка PDF
 \usepackage{comment}        % комментарии внутри tex файлов
 
+\usepackage{titletoc,tocloft}
 
 % Шрифты, xelatex
 \defaultfontfeatures{Ligatures=TeX}
@@ -100,6 +101,7 @@
 
 
 
+
 \begin{comment}
 % Оформление нумерации страниц справа-вверху
 \usepackage{fancyhdr}
@@ -193,6 +195,12 @@
 \titleformat{\subsubsection}[block]{\vspace{1em}\normalsize}{}{12.5mm}{\thesubsubsection\quad#1\vspace{1em}}
 \titleformat{\paragraph}[block]{\normalsize}{}{12.5mm}{\MakeTextUppercase{#1}}
 
+% Отступы внутри заголовков
+\setlength{\cftsecindent}{1.2cm}
+\setlength{\cftsubsecindent}{0.5cm}
+\setlength{\cftsubsubsecindent}{0.5cm}
+
+
 
 % Секции без номеров (введение, заключение...), вместо section*{}
 \newcommand{\anonsection}[1]{
@@ -227,4 +235,4 @@
     }
 \makeatother
 
-\setcounter{page}{1} % Начало нумерации страниц
+\setcounter{page}{5} % Начало нумерации страниц
