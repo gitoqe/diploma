@@ -188,7 +188,7 @@
 
 % Оформление заголовков
 \usepackage[compact,explicit]{titlesec}
-\titleformat{\section}{}{}{12.5mm}{\centering{\thesection\quad\MakeTextUppercase{#1}}\vspace{1.5em}}
+\titleformat{\section}{}{}{12.5mm}{\centering\textbf{\thesection\quad\MakeTextUppercase{#1}}\vspace{1.0em}}
 \titleformat{\subsection}[block]{\vspace{1em}}{}{12.5mm}{\thesubsection\quad#1\vspace{1em}}
 \titleformat{\subsubsection}[block]{\vspace{1em}\normalsize}{}{12.5mm}{\thesubsubsection\quad#1\vspace{1em}}
 \titleformat{\paragraph}[block]{\normalsize}{}{12.5mm}{\MakeTextUppercase{#1}}
@@ -197,7 +197,8 @@
 % Секции без номеров (введение, заключение...), вместо section*{}
 \newcommand{\anonsection}[1]{
     \phantomsection % Корректный переход по ссылкам в содержании
-    \paragraph{\centerline{{#1}}\vspace{1.5em}}
+    \paragraph{\centerline{\textbf{#1}}\vspace{1em}}
+    
     \addcontentsline{toc}{section}{\uppercase{#1}}
 }
 
