@@ -5,14 +5,15 @@
 \input{preamble} % преамбула - настройки документа
 
 \begin{document}
+    \tableofcontents % Содержание
+    \clearpage
 
-%\input{section/1-title.tex}         % титульный лист
-%\input{section/2-task.tex}          % задание на ВКР
-\input{section/3-content.tex}       % содержание
-\input{section/4-intro.tex}         % введение
-\input{section/5-main.tex}          % основная часть
-\input{section/6-conclusion.tex}    % заключение
-\input{section/7-sources.tex}       % источники
-\input{section/8-appendix.tex}      % приложения
-
+    \input{section/intro.tex}         % введение
+    \input{section/1-analysis.tex}    % Анализ предметной области
+    \input{section/2-design.tex}      % Проектирование
+    \input{section/3-dev-web.tex}     % Разработка
+    \input{section/4-dev-man.tex}     % Разработка методических материалов
+    \input{section/conclusion.tex}    % заключение
+    \input{section/sources.tex}       % источники
+    \input{section/appendix.tex}      % приложения
 \end{document}

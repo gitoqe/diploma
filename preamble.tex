@@ -188,15 +188,18 @@
 \makeatother
 
 
-% Оформление заголовков
+% Оформление заголовков ---------------------------------------------------
 \usepackage[compact,explicit]{titlesec}
-\titleformat{\section}{}{}{12.5mm}{\centering\textbf{\thesection\quad\MakeTextUppercase{#1}}\vspace{1.0em}}
-\titleformat{\subsection}[block]{\vspace{1em}}{}{12.5mm}{\thesubsection\quad#1\vspace{1em}}
-\titleformat{\subsubsection}[block]{\vspace{1em}\normalsize}{}{12.5mm}{\thesubsubsection\quad#1\vspace{1em}}
-\titleformat{\paragraph}[block]{\normalsize}{}{12.5mm}{\MakeTextUppercase{#1}}
+\titleformat{\section}{\vspace{0pt}}{}{10mm}{\centering\textbf{\thesection\quad\MakeTextUppercase{#1}}\vspace{14pt}}
+
+\titleformat{\subsection}[block]{\vspace{14pt}}{}{10mm}{\thesubsection\quad#1\vspace{14pt}}
+
+\titleformat{\subsubsection}[block]{\vspace{14pt}\normalsize}{}{10mm}{\thesubsubsection\quad#1\vspace{14pt}}
+
+\titleformat{\paragraph}[block]{\normalsize}{}{0mm}{\MakeTextUppercase{#1}}
 
 % Отступы внутри заголовков
-\setlength{\cftsecindent}{1.2cm}
+\setlength{\cftsecindent}{1.0cm}
 \setlength{\cftsubsecindent}{0.5cm}
 \setlength{\cftsubsubsecindent}{0.5cm}
 
