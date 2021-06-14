@@ -5,11 +5,19 @@
 \usepackage{comment}        % комментарии внутри tex файлов
 
 \usepackage{titletoc,tocloft}
+\usepackage{listings} % Оформление исходного кода
+\lstset{
+    basicstyle=\small\ttfamily, % Размер и тип шрифта
+    breaklines=true, % Перенос строк
+    tabsize=2, % Размер табуляции
+    literate={--}{{-{}-}}2 % Корректно отображать двойной дефис
+}
 
 % Шрифты, xelatex
 \defaultfontfeatures{Ligatures=TeX}
-\setmainfont{Times New Roman}
+\setmainfont{Times New Roman} % текст
 \newfontfamily\cyrillicfont{Times New Roman}
+\setmonofont{FreeMono}      % код
 
 % Русский язык
 \usepackage{polyglossia}
@@ -51,7 +59,7 @@
 
 % Оформление библиографии и подрисуночных записей через точку
 \makeatletter
-\renewcommand*{\@biblabel}[1]{\hfill#1}
+\renewcommand*{\@biblabel}[1]{\hfill#1.}
 \renewcommand*\l@section{\@dottedtocline{1}{1em}{1em}}
 \renewcommand{\thefigure}{\thesection.\arabic{figure}} % Формат рисунка секция.номер
 \renewcommand{\thetable}{\thesection.\arabic{table}} % Формат таблицы секция.номер
@@ -80,13 +88,13 @@
 
 % Оформление списка
 \usepackage{enumitem}
-\setlist[enumerate,itemize]{leftmargin=12.7mm} % Отступы в списках
+\setlist[enumerate,itemize]{leftmargin=10mm} % Отступы в списках
 
 \makeatletter
     \AddEnumerateCounter{\asbuk}{\@asbuk}{м)}
 \makeatother
 \setlist{nolistsep} % Нет отступов между пунктами списка
-\renewcommand{\labelitemi}{--} % Маркет списка --
+\renewcommand{\labelitemi}{--} % Маркер списка --
 \renewcommand{\labelenumi}{\asbuk{enumi})} % Список второго уровня
 \renewcommand{\labelenumii}{\arabic{enumii})} % Список третьего уровня
 
@@ -98,8 +106,6 @@
 \renewcommand\cftsecleader{\cftdotfill{\cftdotsep}} % Точки для секций в содержании
 \renewcommand\cftsecpagefont{\mdseries}             % Номера страниц не жирные
 \setcounter{tocdepth}{3}                            % Глубина оглавления, до subsubsection
-
-
 
 
 \begin{comment}
