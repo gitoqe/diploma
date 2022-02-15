@@ -5,11 +5,19 @@
 \usepackage{comment}        % комментарии внутри tex файлов
 
 \usepackage{titletoc,tocloft}
+\usepackage{listings} % Оформление исходного кода
+\lstset{
+    basicstyle=\small\ttfamily, % Размер и тип шрифта
+    breaklines=true, % Перенос строк
+    tabsize=2, % Размер табуляции
+    literate={--}{{-{}-}}2 % Корректно отображать двойной дефис
+}
 
 % Шрифты, xelatex
 \defaultfontfeatures{Ligatures=TeX}
-\setmainfont{Times New Roman}
+\setmainfont{Times New Roman} % текст
 \newfontfamily\cyrillicfont{Times New Roman}
+\setmonofont{FreeMono}      % код
 
 % Русский язык
 \usepackage{polyglossia}
@@ -51,7 +59,7 @@
 
 % Оформление библиографии и подрисуночных записей через точку
 \makeatletter
-\renewcommand*{\@biblabel}[1]{\hfill#1}
+\renewcommand*{\@biblabel}[1]{\hfill#1.}
 \renewcommand*\l@section{\@dottedtocline{1}{1em}{1em}}
 \renewcommand{\thefigure}{\thesection.\arabic{figure}} % Формат рисунка секция.номер
 \renewcommand{\thetable}{\thesection.\arabic{table}} % Формат таблицы секция.номер
@@ -80,13 +88,13 @@
 
 % Оформление списка
 \usepackage{enumitem}
-\setlist[enumerate,itemize]{leftmargin=12.7mm} % Отступы в списках
+\setlist[enumerate,itemize]{leftmargin=10mm} % Отступы в списках
 
 \makeatletter
     \AddEnumerateCounter{\asbuk}{\@asbuk}{м)}
 \makeatother
 \setlist{nolistsep} % Нет отступов между пунктами списка
-\renewcommand{\labelitemi}{--} % Маркет списка --
+\renewcommand{\labelitemi}{--} % Маркер списка --
 \renewcommand{\labelenumi}{\asbuk{enumi})} % Список второго уровня
 \renewcommand{\labelenumii}{\arabic{enumii})} % Список третьего уровня
 
@@ -98,8 +106,6 @@
 \renewcommand\cftsecleader{\cftdotfill{\cftdotsep}} % Точки для секций в содержании
 \renewcommand\cftsecpagefont{\mdseries}             % Номера страниц не жирные
 \setcounter{tocdepth}{3}                            % Глубина оглавления, до subsubsection
-
-
 
 
 \begin{comment}
@@ -188,15 +194,18 @@
 \makeatother
 
 
-% Оформление заголовков
+% Оформление заголовков ---------------------------------------------------
 \usepackage[compact,explicit]{titlesec}
-\titleformat{\section}{}{}{12.5mm}{\centering\textbf{\thesection\quad\MakeTextUppercase{#1}}\vspace{1.0em}}
-\titleformat{\subsection}[block]{\vspace{1em}}{}{12.5mm}{\thesubsection\quad#1\vspace{1em}}
-\titleformat{\subsubsection}[block]{\vspace{1em}\normalsize}{}{12.5mm}{\thesubsubsection\quad#1\vspace{1em}}
-\titleformat{\paragraph}[block]{\normalsize}{}{12.5mm}{\MakeTextUppercase{#1}}
+\titleformat{\section}{\vspace{0pt}}{}{10mm}{\centering\textbf{\thesection\quad\MakeTextUppercase{#1}}\vspace{14pt}}
+
+\titleformat{\subsection}[block]{\vspace{14pt}}{}{10mm}{\thesubsection\quad#1\vspace{14pt}}
+
+\titleformat{\subsubsection}[block]{\vspace{14pt}\normalsize}{}{10mm}{\thesubsubsection\quad#1\vspace{14pt}}
+
+\titleformat{\paragraph}[block]{\normalsize}{}{0mm}{\MakeTextUppercase{#1}}
 
 % Отступы внутри заголовков
-\setlength{\cftsecindent}{1.2cm}
+\setlength{\cftsecindent}{1.0cm}
 \setlength{\cftsubsecindent}{0.5cm}
 \setlength{\cftsubsubsecindent}{0.5cm}
 
