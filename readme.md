@@ -9,14 +9,14 @@
 
 Выполнить формирование pdf-документа:
 ```shell
-$ xelatex main.tex
+xelatex main.tex
 ```
 ### Возможные ошибки и шаги к их решению на Ubuntu 22
 
 1. Установка xelatex:
 
     ```shell
-    $ sudo apt install texlive-xetex
+    sudo apt install texlive-xetex
     ```
 
 2. Добавление xelatex в PATH
@@ -45,5 +45,7 @@ $ xelatex main.tex
     ```json
     "latex-workshop.latex.recipe.default": "lastUsed"
     ```
-    и запустить нужный вариант сборки. Далее автоматически будет применяться 
+    и запустить нужный вариант сборки.
+
+    Далее автоматически будет применяться выбранный способ формирования документа.
 
