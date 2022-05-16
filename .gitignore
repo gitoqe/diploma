@@ -10,3 +10,9 @@ main.aux
 
 deprecated/
 antiplagiat/
+
+.DS_Store
+*.fls
+*.fdb_latexmk
+*.xdv
+*.zip

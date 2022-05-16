@@ -48,6 +48,10 @@
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
+    %urlcolor={black},
+    %linkcolor={black},
+    %citecolor={black},
+    %filecolor={black},
     urlcolor={red},
     linkcolor={blue},
     citecolor={green},
@@ -131,7 +135,7 @@
 \DeclareCaptionLabelSeparator{defffis}{ -- } % Разделитель
 \captionsetup[figure]{justification=centering, labelsep=defffis, format=plain} % Подпись рисунка по центру
 \captionsetup[table]{justification=raggedright, labelsep=defffis, format=plain, singlelinecheck=false} % Подпись таблицы слева
-\addto\captionsrussian{\renewcommand{\figurename}{Рис.}} % Имя фигуры
+\addto\captionsrussian{\renewcommand{\figurename}{Рисунок}} % Имя фигуры
 
 
 % Пользовательские функции -----------------------------------------------------
@@ -196,7 +200,7 @@
 
 % Оформление заголовков ---------------------------------------------------
 \usepackage[compact,explicit]{titlesec}
-\titleformat{\section}{\vspace{0pt}}{}{10mm}{\centering\textbf{\thesection\quad\MakeTextUppercase{#1}}\vspace{14pt}}
+\titleformat{\section}{\vspace{0pt}}{}{10mm}{\centering{\thesection\quad\MakeTextUppercase{#1}}\vspace{14pt}}
 
 \titleformat{\subsection}[block]{\vspace{14pt}}{}{10mm}{\thesubsection\quad#1\vspace{14pt}}
 
