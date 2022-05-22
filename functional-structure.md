@@ -50,3 +50,25 @@ CSS --> Temp
 
 @enduml
 ```
+
+
+
+@startwbs
+* Главная страница
+** Об организации
+***: Сведения
+об организации;
+*** Документы
+** Расписание
+** Курсы
+***: Страницы
+отдельных
+курсов;
+** Мероприятия
+** Аренда
+** Контакты
+** Оплата
+** Работы учеников
+@endwbs
+
+//www.plantuml.com/plantuml/png/TP0zJeT05CJxFSNM746R_rKqsbe8YIqV4GjCCD7A6A8tM10YMGIkCEz6pjiDniQ2Hp9lXj_mJcbsSPlTNQOciNZ60eS1AvoqLWef9QUmOfOQpYIqTEWjDigVSO4lUck-PwwJCuiFvYUCV3JM6cp_9iurOl52YvSAtveXiWcWTxeAx9WvOsuA-gjKahDQS_3-bgHAL1dmYppoSutS6_YO8MTGfiKR9eOsx9mioGHds3nHqUeZNCJHnL84-Dzg7NOzbAf7LVJaScz9UeZ_3gyySxg-kU9vVm00
