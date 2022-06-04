@@ -6,17 +6,44 @@
 
 \usepackage{titletoc,tocloft}
 \usepackage{listings} % Оформление исходного кода
+% http://users.ece.utexas.edu/~garg/dist/listings.pdf
 \lstset{
+    keywordstyle=\color{black}\bfseries\underbar,
+% underlined bold black keywords
     basicstyle=\small\ttfamily, % Размер и тип шрифта
     breaklines=true, % Перенос строк
     tabsize=2, % Размер табуляции
-    literate={--}{{-{}-}}2 % Корректно отображать двойной дефис
+    literate={--}{{-{}-}}2, % Корректно отображать двойной дефис
+    stringstyle=\ttfamily, % typewriter type for strings
+    showstringspaces=true,
+    numbers=left,
+    %numberstyle=\tiny,
+    %stepnumber=5,
+    numbersep=5pt
+}
+
+% JS highlighting
+% https://tex.stackexchange.com/questions/89574/language-option-supported-in-listings
+\lstdefinelanguage{JavaScript}{
+  keywords={break, case, catch, continue, debugger, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with},
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  sensitive=true
 }
 
 % Шрифты, xelatex
 \defaultfontfeatures{Ligatures=TeX}
 \setmainfont{Times New Roman} % текст
 \newfontfamily\cyrillicfont{Times New Roman}
+\newfontfamily{\cyrillicfonttt}{FreeMono}
 \setmonofont{FreeMono}      % код
 
 % Русский язык
@@ -48,10 +75,10 @@
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
-    %urlcolor={black},
-    %linkcolor={black},
-    %citecolor={black},
-    %filecolor={black},
+    % urlcolor={black},
+    % linkcolor={black},
+    % citecolor={black},
+    % filecolor={black},
     urlcolor={red},
     linkcolor={blue},
     citecolor={green},
@@ -130,13 +157,14 @@
 \end{comment}
 
 
+
 % Формат подрисуночных надписей
 \RequirePackage{caption}
 \DeclareCaptionLabelSeparator{defffis}{ -- } % Разделитель
 \captionsetup[figure]{justification=centering, labelsep=defffis, format=plain} % Подпись рисунка по центру
 \captionsetup[table]{justification=raggedright, labelsep=defffis, format=plain, singlelinecheck=false} % Подпись таблицы слева
 \addto\captionsrussian{\renewcommand{\figurename}{Рисунок}} % Имя фигуры
-
+\captionsetup[lstinputlisting]{justification=centering, labelsep=defffis, format=plain}
 
 % Пользовательские функции -----------------------------------------------------
 
@@ -218,7 +246,7 @@
 % Секции без номеров (введение, заключение...), вместо section*{}
 \newcommand{\anonsection}[1]{
     \phantomsection % Корректный переход по ссылкам в содержании
-    \paragraph{\centerline{\textbf{#1}}\vspace{1em}}
+    \paragraph{\centerline{{#1}}\vspace{1em}}
     
     \addcontentsline{toc}{section}{\uppercase{#1}}
 }
@@ -248,4 +276,4 @@
     }
 \makeatother
 
-\setcounter{page}{5} % Начало нумерации страниц
+\setcounter{page}{6} % Начало нумерации страниц
