@@ -164,33 +164,95 @@ hide circle
 ' avoid problems with angled crows feet
 skinparam linetype ortho
 
-entity "Holidays" as Hld {
-  *holiday_id : integer <<generated>>
+entity "Courses" as Courses {
+  *id : INTEGER <<generated>>
   --
-  name : text
-  description : text
+  - name : TEXT
+  - description : TEXT
+  - subscription : TEXT
+  - price : TEXT  
+  - next_course: INTEGER id <<FK>>
+  - level : TEXT name <<FK>>
+  - grade : INTEGER
+  - themes : BLOB
+  - time : INTEGER
 }
 
-entity "Courses" as Crs {
-  *course_id : integer <<generated>>
+entity "Levels" as Levels {
+  *id : INTEGER <<generated>>
   --
-  name : text
-  description : text
-  price : text  
-  link_plan : text
-  has_next_course : text
-  next_course: integer course_id <<FK>>
-  is_school : text
-  grade : integer
+  - name : TEXT
 }
 
-entity "Students_work" as SW {
-  *work_id : integer <<generated>>
+Levels --> Courses
+
+entity "Students_work" as Students_work {
+  *id : INTEGER <<generated>>
   --
-  course_id : integer <<FK>>
-  year : text
+  - course_id : INTEGER <<FK>>
+  - year : TEXT
+  - student_name : TEXT
+  - link : TEXT
 }
 
-SW --> Crs
+Courses --> Students_work
+
+entity "Employees" as Employees {
+  *id : INTEGER <<generated>>
+  --
+  - name : TEXT
+  - surname : TEXT
+  - middlename : TEXT
+  - position : TEXT
+  - education : TEXT
+  - start_year : TEXT
+  - experience : TEXT
+}
+
+entity "Teaches" as Teaches {
+  *id : INTEGER <<generated>>
+  --
+  - course_id : INTEGER <<FK>>
+  - teacher_id : INTEGER <<FK>>
+}
+
+Courses --> Teaches
+Employees --> Teaches
+
 @enduml
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
