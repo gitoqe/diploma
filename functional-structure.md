@@ -219,19 +219,16 @@ entity "Teaches" as Teaches {
 Courses --> Teaches
 Employees --> Teaches
 
+entity "Users" as Users {
+  *id : INTEGER <<generated>>
+  --
+  - username : TEXT
+  - password : TEXT
+  - token : TEXT
+}
+
 @enduml
 ```
-
-
-
-
-
-
-
-
-
-
-
 
 
 
