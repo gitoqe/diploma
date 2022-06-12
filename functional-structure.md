@@ -32,25 +32,20 @@ skinparam rectangle<<behavior>> {
 	roundCorner 25
 }
 
-rectangle "СУБД\nSqlite" as DB
-rectangle "API\nExpress.js" as EX
-rectangle "Формирование\nотображения\nAngular" as Angular
-rectangle "Шаблоны\nстраниц\nAngular" as Temp
-rectangle "Настройки\nстилей\nCSS/SASS" as CSS
+rectangle "Sqlite\n\nСУБД" as DB
+rectangle "Express.js + Node.js\n\nAPI, серверная\nчасть" as EX
+rectangle "Angular\n\nКлиентская\nчасть" as Angular
+rectangle "Angular\n\nШаблоны\nHTML" as Temp
+rectangle "CSS/SASS\n\nНастройки\nстилей" as CSS
 
-rectangle "CSS-библиотека\nBulma" as Bulma
+rectangle "Bulma\n\nCSS-библиотека" as Bulma
 
 Bulma --> CSS
-
 EX <--> DB
 EX <--> Angular
-
-
-Temp --> Angular
-
+Temp <--> Angular
 CSS --> Angular
 CSS --> Temp
-
 @enduml
 ```
 
@@ -59,20 +54,103 @@ CSS --> Temp
 ```plantuml
 @startwbs
 * Главная страница
-** Об организации
-***: Сведения
-об организации;
-*** Документы
-** Расписание
+** Поступление
 ** Курсы
 ***: Страницы
 отдельных
 курсов;
-** Мероприятия
-** Аренда
-** Контакты
-** Оплата
+** Расписание
 ** Работы учеников
+** Об организации
+***: Сведения
+об организации;
+*** Документы
+*** Сотрудники
+** Оплата и аренда
+*** Оплата
+*** Аренда
+@endwbs
+```
+## OLD ONE
+### Главная
+```plantuml
+@startwbs
+* Главная
+** Мезон
+**:Сведения
+об
+организации;
+**:Обучение
+(неактуально);
+** Аренда
+** Расписание
+**:Стоимость
+(неактуально);
+** Итоговые работы
+**:Полезные ссылки
+(неактуально);
+**:Мероприятия
+(неактуально);
+@endwbs
+```
+### Сведения об организации
+```plantuml
+@startwbs
+* Сведения об организации
+**:Основные
+сведения;
+** Документы
+** Образование
+**:Образовательные
+стандарты;
+**:Руководство
+и педагогический
+состав;
+**:Структура
+и органы управления;
+**:Материально-техническое
+обеспечение и оснащенность
+образовательного процесса;
+**:Стипендии
+и иные виды
+материальной
+поддержки;
+**:Платные
+образовательные
+услуги;
+**:Финансово и 
+хозяйственная
+деятельность;
+**:Вакантные места
+для приема/перевода;
+@endwbs
+```
+
+
+```plantuml
+@startwbs
+* Главная страница
+** Главная
+
+
+
+
+** Обучение
+** Аренда
+
+***: Страницы
+отдельных
+курсов;
+** Расписание
+** Работы учеников
+** Об организации
+***: Сведения
+об организации;
+*** Документы
+*** Сотрудники
+** Оплата и аренда
+*** Оплата
+*** Аренда
 @endwbs
 ```
 
@@ -86,33 +164,92 @@ hide circle
 ' avoid problems with angled crows feet
 skinparam linetype ortho
 
-entity "Holidays" as Hld {
-  *holiday_id : integer <<generated>>
+entity "Courses" as Courses {
+  *id : INTEGER <<generated>>
   --
-  name : text
-  description : text
+  - name : TEXT
+  - description : TEXT
+  - subscription : TEXT
+  - price : TEXT  
+  - next_course: INTEGER id <<FK>>
+  - level : TEXT name <<FK>>
+  - grade : INTEGER
+  - themes : BLOB
+  - time : INTEGER
 }
 
-entity "Courses" as Crs {
-  *course_id : integer <<generated>>
+entity "Levels" as Levels {
+  *id : INTEGER <<generated>>
   --
-  name : text
-  description : text
-  price : text  
-  link_plan : text
-  has_next_course : text
-  next_course: integer course_id <<FK>>
-  is_school : text
-  grade : integer
+  - name : TEXT
 }
 
-entity "Students_work" as SW {
-  *work_id : integer <<generated>>
+Levels --> Courses
+
+entity "Students_work" as Students_work {
+  *id : INTEGER <<generated>>
   --
-  course_id : integer <<FK>>
-  year : text
+  - course_id : INTEGER <<FK>>
+  - year : TEXT
+  - student_name : TEXT
+  - link : TEXT
 }
 
-SW --> Crs
+Courses --> Students_work
+
+entity "Employees" as Employees {
+  *id : INTEGER <<generated>>
+  --
+  - name : TEXT
+  - surname : TEXT
+  - middlename : TEXT
+  - position : TEXT
+  - education : TEXT
+  - start_year : TEXT
+  - experience : TEXT
+}
+
+entity "Teaches" as Teaches {
+  *id : INTEGER <<generated>>
+  --
+  - course_id : INTEGER <<FK>>
+  - teacher_id : INTEGER <<FK>>
+}
+
+Courses --> Teaches
+Employees --> Teaches
+
+entity "Users" as Users {
+  *id : INTEGER <<generated>>
+  --
+  - username : TEXT
+  - password : TEXT
+  - token : TEXT
+}
+
 @enduml
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
