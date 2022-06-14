@@ -71,21 +71,6 @@
 \counterwithin{figure}{section}
 
 
-% Оформление гиперссылок
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks,
-    % urlcolor={black},
-    % linkcolor={black},
-    % citecolor={black},
-    % filecolor={black},
-    urlcolor={red},
-    linkcolor={blue},
-    citecolor={green},
-    filecolor={orange},
-    pdfauthor={Максим Сергиенко},
-    pdftitle={Разработка Web-ресурса для учебного центра «Мезон»}
-}
 
 
 % Оформление библиографии и подрисуночных записей через точку
@@ -229,6 +214,7 @@
 \makeatother
 
 
+
 % Оформление заголовков ---------------------------------------------------
 \usepackage[compact,explicit]{titlesec}
 \titleformat{\section}{\vspace{0pt}}{}{10mm}{\centering{\thesection\quad\MakeTextUppercase{#1}}\vspace{14pt}}
@@ -278,5 +264,23 @@
         \setlength{\itemsep}{0pt}
     }
 \makeatother
+
+% Оформление гиперссылок
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks,
+    % urlcolor={black},
+    % linkcolor={black},
+    % citecolor={black},
+    % filecolor={black},
+    urlcolor={red},
+    linkcolor={blue},
+    citecolor={green},
+    filecolor={orange},
+    pdfauthor={Максим Сергиенко},
+    pdftitle={Разработка Web-ресурса для учебного центра «Мезон»}
+}
+
 
 \setcounter{page}{6} % Начало нумерации страниц
