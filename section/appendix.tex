@@ -1,5 +1,236 @@
-\anonsection{Приложения}
+\phantomsection
+\addcontentsline{toc}{subsection}{ПРИЛОЖЕНИЕ 1 Исходный код файла content-editor.guard.ts}
+\begin{center}
+    ПРИЛОЖЕНИЕ 1\\
+    %\vspace*{-1cm}
+    (обязательное)
 
-% // TODO приложения
 
+    Исходный код файла content-editor.guard.ts
+\end{center}
+
+\begin{lstlisting}
+    import { Injectable } from '@angular/core';
+    import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router, UrlTree } from '@angular/router';
+    import { Observable } from 'rxjs';
+    import { AuthService } from '../services/auth.service';
+    @Injectable({
+        providedIn: 'root'
+    })
+    export class AuthGuard implements CanActivate {
+        constructor (private _router: Router, private _auth: AuthService) {}
+        canActivate(
+            route: ActivatedRouteSnapshot,
+            state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+            console.log('@ AuthGuard canActivate: ')
+            if (this._auth.isLoggedIn()) {
+                this._router.navigate(['/contenteditor']);
+            }
+            return !this._auth.isLoggedIn();
+        }
+    }
+\end{lstlisting}
+\clearpage
+
+\phantomsection
+\addcontentsline{toc}{subsection}{ПРИЛОЖЕНИЕ 2 Исходный код файла auth.guard.ts}\label{на-приложение-2}
+\begin{center}
+    ПРИЛОЖЕНИЕ 2\\
+    %\vspace*{-1cm}
+    (обязательное)
+
+
+    Исходный код файла auth.guard.ts
+\end{center}
+
+\begin{lstlisting}
+    import { Injectable } from '@angular/core';
+    import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router, UrlTree } from '@angular/router';
+    import { Observable } from 'rxjs';
+    import { AuthService } from '../services/auth.service';
+    @Injectable({
+        providedIn: 'root'
+    })
+    export class AuthGuard implements CanActivate {
+        constructor (private _router: Router, private _auth: AuthService) {}
+        canActivate(
+            route: ActivatedRouteSnapshot,
+            state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+            console.log('@ AuthGuard canActivate: ')
+            if (this._auth.isLoggedIn()) {
+                this._router.navigate(['/contenteditor']);
+            }
+            return !this._auth.isLoggedIn();
+        }
+    }
+\end{lstlisting}
+\clearpage
+
+\addcontentsline{toc}{subsection}{ПРИЛОЖЕНИЕ 3 Исходный код файла token.interceptor.ts}\label{на-приложение-3}
+\begin{center}
+    ПРИЛОЖЕНИЕ 3\\
+    %\vspace*{-1cm}
+    (обязательное)
+
+
+    Исходный код файла token.interceptor.ts
+\end{center}
+
+\begin{lstlisting}
+import { Injectable } from '@angular/core';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from '../services/auth.service';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { catchError, filter, take, switchMap } from 'rxjs/operators';
+@Injectable()
+export class TokenInterceptor implements HttpInterceptor {
+    private isRefreshing = false;
+    private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+    constructor(public _auth: AuthService) { }
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        if (this._auth.getJwtToken()) {
+            request = this.addToken(request, this._auth.getJwtToken());
+        }
+        return next.handle(request).pipe(catchError(error => {
+            if (error instanceof HttpErrorResponse && error.status === 401) {
+                return this.handle401Error(request, next);
+            } else {
+                return throwError(error);
+            }
+        }));
+    }
+    private addToken(request: HttpRequest<any>, token: string | null) {
+        return request.clone({
+            setHeaders: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+    }
+    private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
+        if (!this.isRefreshing) {
+            this.isRefreshing = true;
+            this.refreshTokenSubject.next(null);
+
+            return this._auth.refreshToken().pipe(
+                switchMap((token: any) => {
+                    this.isRefreshing = false;
+                    this.refreshTokenSubject.next(token.jwt);
+                    return next.handle(this.addToken(request, token.jwt));
+                }));
+        } else {
+            return this.refreshTokenSubject.pipe(
+                filter(token => token != null),
+                take(1),
+                switchMap(jwt => {
+                    return next.handle(this.addToken(request, jwt));
+                }));
+        }
+    }
+}
+\end{lstlisting}
+\clearpage
+
+\phantomsection
+\addcontentsline{toc}{subsection}{ПРИЛОЖЕНИЕ 4 Исходный код файла auth.service.ts}
+\begin{center}
+    ПРИЛОЖЕНИЕ 4\\
+    %\vspace*{-1cm}
+    (обязательное)
+
+
+    Исходный код файла auth.service.ts
+\end{center}
+
+\begin{lstlisting}
+    import { Injectable } from '@angular/core';
+    import { HttpClient } from "@angular/common/http";
+    import { Observable, of } from 'rxjs';
+    import { tap, map, catchError  } from 'rxjs/operators';
+    import { Tokens } from './tokens';
+    @Injectable({
+        providedIn: 'root'
+    })
+    export class AuthService {
+        constructor(private http: HttpClient) { }
+        isLoggedIn() {
+            console.log('$ AuthService isLoggedIn():');
+            return !!this.getJwtToken();
+        }
+        readonly ROOT_URL: string = 'http://localhost:3002';
+        readonly LOGIN_URL: string = this.ROOT_URL + '/api/login'; 
+        readonly REFRESH_URL: string = this.ROOT_URL + '/api/refresh';
+        readonly LOGOUT_URL: string = this.ROOT_URL + '/api/logout';
+        login(user: UserData): Observable<boolean> {
+            console.log('$ AuthService login():');
+            return this.http.post<any>(this.LOGIN_URL, user)
+                .pipe(
+                    tap((tokens) => {
+                        console.log('tokens', tokens)
+                        this.doLoginUser(user.username, tokens)
+                    }),
+                    map(() => true),
+                    catchError((error) => {
+                        console.log(error);
+                        return of(false);
+                    })
+                );
+        }
+        private loggedUser: string | null;
+        private doLoginUser(username: string, tokens: Tokens) {
+            console.log('$ AuthService doLoginUser():', username, tokens, typeof tokens);
+            this.loggedUser = username;
+            this.storeTokens(tokens);
+        }
+        private readonly JWT_TOKEN = 'JWT_TOKEN';
+        private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
+        private storeTokens(tokens: Tokens) {
+            console.log('$ AuthService storeTokens():');
+            localStorage.setItem(this.JWT_TOKEN, tokens.jwt);
+            localStorage.setItem(this.REFRESH_TOKEN, tokens.refreshToken);
+        }
+        refreshToken() {
+            console.log('$ AuthService refreshToken():');
+            return this.http.post<any>(this.REFRESH_URL, {
+                'refreshToken': this.getRefreshToken()
+            }).pipe(tap((tokens: Tokens) => {
+                this.storeJwtToken(tokens.jwt);
+            }));
+        }
+        private getRefreshToken() {
+            console.log('$ AuthService getRefreshToken():');
+            return localStorage.getItem(this.REFRESH_TOKEN);
+        }
+        private storeJwtToken(jwt: string) {
+            console.log('$ AuthService storeJwtToken():');
+            localStorage.setItem(this.JWT_TOKEN, jwt);
+        }
+        getJwtToken() {
+            console.log('$ AuthService getJwtToken():');
+            return localStorage.getItem(this.JWT_TOKEN);
+        }
+        private removeTokens() {
+            localStorage.removeItem(this.JWT_TOKEN);
+            localStorage.removeItem(this.REFRESH_TOKEN);
+        }
+        private doLogoutUser() {
+            this.loggedUser = null;
+            this.removeTokens();
+        }
+        logout() {
+            return this.http.post<any>(this.LOGOUT_URL, {
+                'refreshToken': this.getRefreshToken()
+            }).pipe(
+                tap(() => this.doLogoutUser()),
+                map(() => true),
+                catchError(error => {
+                    alert(error.error);
+                    return of(false);
+                }));
+        }
+    }
+    interface UserData {
+        username: string
+        password: string;
+    }    
+\end{lstlisting}
 \clearpage
