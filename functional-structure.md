@@ -230,12 +230,59 @@ entity "Users" as Users {
 @enduml
 ```
 
+# Клиентская часть
+## Логин уже произведен
+```plantuml
+@startuml
+skinparam ParticipantPadding 20
+skinparam BoxPadding 10
+actor Пользователь as User
+box "Клиентская\nчасть\nAngular"
+participant Routes as Routes
+participant "AuthGuard" as AuthGuard
+participant "AuthService" as AuthService
+database "Local\nstorage" as LS
+participant "Скрытая\nстраница\nлогина" as SecretLoginComponent
+end box
+User -> Routes : /secretlogin
+activate Routes
+Routes -> AuthGuard : canActivate
+activate AuthGuard
+AuthGuard -> AuthService : isLoggedIn
+activate AuthService
+AuthService -> AuthService : getJwtToken
+AuthService -> LS : getItem
+activate LS
+LS -> AuthService : no token
+deactivate LS
+AuthService -> AuthGuard : false
+deactivate AuthService
+AuthGuard -> Routes : true
+deactivate AuthGuard
+Routes -> SecretLoginComponent
+deactivate Routes
+SecretLoginComponent -> User
+@enduml
+```
+box "Серверная\nчасть\nNode.js / Express.js"
+database "База\nданных" as DB
+end box
 
 
+boundary    Boundary    as Foo2
+control     Control     as Foo3
+entity      Entity      as Foo4
+collections Collections as Foo6
+queue       Queue       as Foo7
+Foo -> Foo1 : To actor 
+Foo -> Foo2 : To boundary
+Foo -> Foo3 : To control
+Foo -> Foo4 : To entity
+Foo -> Foo5 : To database
+Foo -> Foo6 : To collections
+Foo -> Foo7: To queue
 
-
-
-
+# Сервер ?
 
 
 
